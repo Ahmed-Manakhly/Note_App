@@ -1,0 +1,21 @@
+@use '../index.scss' as * ;
+
+
+
+.page{
+    a {
+        text-decoration: none;
+    }
+    margin-top: 65px;
+    height: 400vh;
+    background-color:  var(--bg1-color) ;
+    color : var(--font-color) ;
+    .content {
+        word-spacing: 1.5px;
+        letter-spacing: 0.5px;
+        line-height: 1.5rem;
+        height: 100%;
+        font-size: larger;
+        padding: 60px;
+    }
+}

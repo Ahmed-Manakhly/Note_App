@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Mochiy+Pop+One&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800&family=Roboto:ital,wght@0,100;0,300;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Dosis:wght@200;300;400;500;700;800&family=Mochiy+Pop+One&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800&family=Roboto:ital,wght@0,100;0,300;1,100&display=swap');
+
+//----------------- colors
+$RaginBeige: #eaffd7 ;
+$NightBlue: #2d545e;
+$BluePopsicle: #5a6786 ;
+//---------------------------------
+$white:    #ffff;
+//----------------------------- palette 3
+$DarkGrey :#393939  ;
+$red-alt :#f75990 ;
+//---------------------------------- palette 4
+$DarkSlate: #1d1e22 ;
+$Areyayellow : #feda6a ;
+//------------------------------ fonts
+$default : "'Oswald', sans-serif "; 
+$font-1 : "'Mochiy Pop One', sans-serif ";
+$font-2 : "'Kablammo', cursive ";
+$font-3 : "'Delicious Handrawn', cursive" ;
+//------------------------------ fonts-group
+$fonts : ( 'default' : $default, 'font-1' : $font-1, 'font-2' : $font-2 , 'font-3': $font-3) ;
+//------------------------------------- palletts
+$pal-1 : ('bg1' : #eeeeee6b  ,'font' : #305ba9,  'shadow' : rgba(0 0 0  / 0.40)) ;
+$pal-2 : ('bg1' : #e9f4f584,'font' : #00bfa0  , 'shadow' : rgba(0 0 0  / 0.40)) ;
+$pal-3 : ('bg1' : $DarkGrey ,'font' : $red-alt  , 'shadow' : rgba(255, 255, 255, 0.45) ) ;
+$pal-4 : ('bg1' : $DarkSlate ,'font' : $Areyayellow , 'shadow' : rgba(255, 255, 255, 0.45) ) ;
+
+
+//----------------------- switch palletts with mixin
+
+@mixin set-themes($theme-val) {
+  $my-pal: ();
+  @if ($theme-val == 'default') {
+    $my-pal: $pal-1 ;
+  } @else if($theme-val == 'font-1'){
+    $my-pal: $pal-2 ;
+  } @else if($theme-val == 'font-2'){
+    $my-pal: $pal-3 ;
+  } @else {
+    $my-pal: $pal-4 ;
+    }
+    [data-theme="#{$theme-val}"]  {
+      @each $key , $val in $my-pal {
+        --#{$key}#{'-color'}: #{$val};
+      }
+    }
+}
+//--------------------------------------------------- generate attributes for colors
+$themes : 'default', 'font-1','font-2' , 'font-3' ;
+@each $theme in $themes {
+  @include set-themes($theme) ;
+}
+//------------------------------------------------ switch fonts mixin 
+@mixin set-font($fonts_) {
+    @each $key , $val in $fonts_ {
+      [data-theme=#{$key}] {
+        --#{'generated-font'}: #{$val};
+    }
+  }
+}
+//------------------------------------- generate attributes
+@include set-font($fonts) ;
+//------------------------------------- generate all fonts variables
+:root{
+  @each $key , $val in $fonts {
+    --#{$key}#{'-font'}: #{$val};
+  }
+}
+//===================================================================================== reset
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+*:focus {
+  outline: none;
+}
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+::-webkit-scrollbar{
+  width: 15px;
+}
+::-webkit-scrollbar-track{
+  background-color: var(--font-color);
+}
+::-webkit-scrollbar-thumb{
+  background-color: var(--font-color);
+}
+::-webkit-scrollbar-thumb:hover{
+  background-color: var(--font-color);
+}
+
+//=====================================================================================  start
+.p__15{
+  padding: 15px;
+}
+
+.bg__1 {
+  background-color: var(--bg1-color)!important;
+  color: var(--font-color)!important;
+}
+
+.p__relative{
+  position: relative;
+}
+
+.tran{
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.p__0 {
+  padding: 0px 0px  !important;
+} 
+
+.rad__10{
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.p__10 {
+  padding: 10px;
+}
+
+.b__border {
+  border: 2.5px solid #ccc;
+}
+
+.d__flex {
+  display: flex;
+}
+
+.align__center {
+  align-items: center;
+}
+.d__ib {
+  display: inline-block;
+}
+
+
+.between__flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.font-1 {
+  font-family: var(--font-1-font);
+  color: var(--font-color)!important;
+}
+.font-2 {
+  font-family: var(--font-2-font);
+  color: var(--font-color)!important;
+}
+.font-3 {
+  font-family: var(--font-3-font);
+  color: var(--font-color)!important;
+}
+
+.default-font{
+  font-family: var(--default-font) ;
+}
+.generated__font {
+  font-family: var(--generated-font) ;  
+}
+
+
+.butt {
+  background-color: var(--font-color)!important;
+  box-shadow:  -5px 5px 10px 1px var(--shadow-color);
+  border: none!important;
+  &:hover , &:active ,&:focus{
+    border: 1px solid  var(--font-color)!important;
+    background-color: transparent!important;
+    color: var(--font-color)!important;
+  }
+  &_2{
+      color: var(--shadow-color);
+      box-shadow:  -5px 5px 10px 1px var(--shadow-color);
+  }
+  &_3 {
+    box-shadow:  -5px 5px 10px 1px var(--shadow-color);
+  }
+}
+
+
+.t__c {
+  text-align: center!important;
+}
+
+[x-placement="bottom-start"] {
+  padding: 0px 0px  !important;
+  box-shadow:  -5px 5px 10px 1px var(--shadow-color);
+  overflow: hidden;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  a {
+    border-bottom: 1px solid var(--font-color);;
+  }
+}

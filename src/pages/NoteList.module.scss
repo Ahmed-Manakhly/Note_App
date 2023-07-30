@@ -1,0 +1,12 @@
+@use '../index.scss' as *;
+.card {
+    transition: translate ease-in-out 100ms, box-shadow ease-in-out 100ms;
+    background-color: var(--bg1-color)!important ;
+    box-shadow:  inset -1px -1px 10px 1px var(--font-color) , inset   7px   7px  17px 2px var(--shadow-color);
+    &:hover,
+    &:focus {
+        translate: 0 -5px;
+        box-shadow: 0 5px 8px 0 var(--shadow-color);
+        
+    }
+}
